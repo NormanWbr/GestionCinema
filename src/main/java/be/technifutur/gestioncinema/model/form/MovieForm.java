@@ -22,9 +22,9 @@ public class MovieForm {
 
     private Set<String> director;
 
-    private List<String> genres;
+    private List<Genre> genres;
 
-    private List<String> classifications;
+    private List<Classification> classifications;
 
     private String description;
 
