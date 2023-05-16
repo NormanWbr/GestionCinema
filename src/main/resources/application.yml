@@ -8,6 +8,3 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
-  sql:
-    init:
-      data-locations: classpath:import.sql

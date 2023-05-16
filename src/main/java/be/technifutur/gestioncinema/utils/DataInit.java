@@ -3,7 +3,10 @@ package be.technifutur.gestioncinema.utils;
 import be.technifutur.gestioncinema.model.Classification;
 import be.technifutur.gestioncinema.model.Genre;
 import be.technifutur.gestioncinema.model.entity.Movie;
+import be.technifutur.gestioncinema.model.entity.User;
+import be.technifutur.gestioncinema.repository.CinemaRepository;
 import be.technifutur.gestioncinema.repository.MovieRepository;
+import be.technifutur.gestioncinema.repository.UserRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +19,13 @@ import java.util.Set;
 public class DataInit implements InitializingBean {
 
     private final MovieRepository movieRepository;
+    private final CinemaRepository cinemaRepository;
+    private final UserRepository userRepository;
 
-    public DataInit(MovieRepository movieRepository) {
+    public DataInit(MovieRepository movieRepository, CinemaRepository cinemaRepository, UserRepository userRepository) {
         this.movieRepository = movieRepository;
+        this.cinemaRepository = cinemaRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -42,6 +49,24 @@ public class DataInit implements InitializingBean {
         lgdlg3.setEndDate(lgdlg3.getReleaseDate().plus(3, ChronoUnit.MONTHS));
 
         movieRepository.save(lgdlg3);
+
+        User user = new User();
+
+        user.setUsername("user");
+        user.setPassword("pass");
+        user.setEnabled(true);
+        user.setRoles(Set.of("USER"));
+
+        userRepository.save(user);
+
+        User admin = new User();
+
+        admin.setUsername("admin");
+        admin.setPassword("pass");
+        admin.setEnabled(true);
+        admin.setRoles(Set.of("USER","ADMIN"));
+
+        userRepository.save(admin);
 
     }
 }

@@ -1,5 +1,7 @@
 package be.technifutur.gestioncinema.service.impl;
 
+import be.technifutur.gestioncinema.model.Classification;
+import be.technifutur.gestioncinema.model.Genre;
 import be.technifutur.gestioncinema.model.dto.MovieDTO;
 import be.technifutur.gestioncinema.model.entity.Movie;
 import be.technifutur.gestioncinema.model.form.MovieForm;
@@ -30,15 +32,6 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void create(MovieForm movieForm) {
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println(movieForm.getClassifications());
 
         Movie movie = new Movie();
 
@@ -46,10 +39,10 @@ public class MovieServiceImpl implements MovieService {
         movie.setDuration(movieForm.getDuration());
         movie.setReleaseDate(movieForm.getReleaseDate());
         movie.setDirector(movieForm.getDirector());
-        movie.setClassifications(movieForm.getClassifications());
+        movie.setClassifications(movieForm.getClassifications().stream().map(Classification::valueOf).toList());
+        movie.setGenres(movieForm.getGenres().stream().map(Genre::valueOf).toList());
         movie.setDescription(movieForm.getDescription());
         movie.setEndDate(movieForm.getEndDate());
-        movie.setGenres(movieForm.getGenres());
         movie.setPoster(movieForm.getPoster());
 
         movieRepository.save(movie);
@@ -63,10 +56,10 @@ public class MovieServiceImpl implements MovieService {
         movie.setDuration(movieForm.getDuration());
         movie.setReleaseDate(movieForm.getReleaseDate());
         movie.setDirector(movieForm.getDirector());
-        movie.setClassifications(movieForm.getClassifications());
+        movie.setClassifications(movieForm.getClassifications().stream().map(Classification::valueOf).toList());
+        movie.setGenres(movieForm.getGenres().stream().map(Genre::valueOf).toList());
         movie.setDescription(movieForm.getDescription());
         movie.setEndDate(movieForm.getEndDate());
-        movie.setGenres(movieForm.getGenres());
         movie.setPoster(movieForm.getPoster());
 
         movieRepository.save(movie);

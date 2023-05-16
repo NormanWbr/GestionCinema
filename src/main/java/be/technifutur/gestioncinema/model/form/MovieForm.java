@@ -14,6 +14,7 @@ import java.util.Set;
 @Data
 public class MovieForm {
 
+    @NotNull
     @Positive
     private Long id;
 
@@ -22,9 +23,9 @@ public class MovieForm {
 
     private Set<String> director;
 
-    private List<Genre> genres;
+    private List<String> genres;
 
-    private List<Classification> classifications;
+    private List<String> classifications;
 
     private String description;
 
@@ -44,8 +45,8 @@ public class MovieForm {
         movie.setId(this.id);
         movie.setTitle(this.title);
         movie.setDirector(this.director);
-        movie.setGenres(this.genres);
-        movie.setClassifications(this.classifications);
+        movie.setGenres(this.genres.stream().map(Genre::valueOf).toList());
+        movie.setClassifications(this.classifications.stream().map(Classification::valueOf).toList());
         movie.setDescription(this.description);
         movie.setDuration(this.duration);
         movie.setReleaseDate(this.releaseDate);
