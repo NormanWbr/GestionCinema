@@ -33,9 +33,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private boolean enabled = true;
 
+
     @ElementCollection(fetch = FetchType.EAGER)
-    @Column(name = "role")
-    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "owner_id"))
     private Set<String> roles = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
@@ -44,8 +43,8 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
-                .map((role) -> new SimpleGrantedAuthority("ROLE_" + role))
-                .collect(Collectors.toSet());
+                .map( role -> new SimpleGrantedAuthority("ROLE_"+role) )
+                .toList();
     }
 
     @Override

@@ -18,15 +18,14 @@ public class DataInit implements InitializingBean {
 
     private final MovieRepository movieRepository;
     private final CinemaRepository cinemaRepository;
-    private final UserRepository userRepository;
+
     private final RoomRepository roomRepository;
     private final ScreeningRepository screeningRepository;
 
-    public DataInit(MovieRepository movieRepository, CinemaRepository cinemaRepository, UserRepository userRepository, RoomRepository roomRepository,
+    public DataInit(MovieRepository movieRepository, CinemaRepository cinemaRepository, RoomRepository roomRepository,
                     ScreeningRepository screeningRepository) {
         this.movieRepository = movieRepository;
         this.cinemaRepository = cinemaRepository;
-        this.userRepository = userRepository;
         this.roomRepository = roomRepository;
         this.screeningRepository = screeningRepository;
     }

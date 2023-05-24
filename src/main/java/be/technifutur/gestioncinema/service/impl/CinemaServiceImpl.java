@@ -35,14 +35,7 @@ public class CinemaServiceImpl implements CinemaService {
 
     @Override
     public void create(CinemaForm cinemaForm) {
-        Cinema cinema = new Cinema();
-
-        cinema.setName(cinemaForm.getName());
-        cinema.setAddress(cinemaForm.getAddress());
-        cinema.setCity(cinemaForm.getCity());
-        cinema.setPostalCode(cinemaForm.getPostalCode());
-        cinema.setEmail(cinemaForm.getEmail());
-        cinema.setPhoneNumber(cinemaForm.getPhoneNumber());
+        Cinema cinema = cinemaForm.toEntity();
 
         cinemaRepository.save(cinema);
     }
@@ -50,12 +43,9 @@ public class CinemaServiceImpl implements CinemaService {
     @Override
     public void update(Long id, CinemaForm cinemaForm) {
         Cinema cinema = cinemaRepository.findById(id).orElseThrow();
-        cinema.setName(cinemaForm.getName());
-        cinema.setAddress(cinemaForm.getAddress());
-        cinema.setCity(cinemaForm.getCity());
-        cinema.setPostalCode(cinemaForm.getPostalCode());
-        cinema.setEmail(cinemaForm.getEmail());
-        cinema.setPhoneNumber(cinemaForm.getPhoneNumber());
+
+        cinema = cinemaForm.toEntity();
+
         cinemaRepository.save(cinema);
     }
 
