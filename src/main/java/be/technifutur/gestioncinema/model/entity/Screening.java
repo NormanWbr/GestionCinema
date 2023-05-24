@@ -17,7 +17,7 @@ public class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "screening_id")
-    private Long screening_id;
+    private Long id;
 
     private LocalDate date;
 
@@ -29,11 +29,12 @@ public class Screening {
     private Set<Booking> bookings = new LinkedHashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
-
-    @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
+
+
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
 
 }

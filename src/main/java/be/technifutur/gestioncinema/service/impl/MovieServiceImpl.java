@@ -64,4 +64,10 @@ public class MovieServiceImpl implements MovieService {
 
         movieRepository.save(movie);
     }
+
+    @Override
+    public void delete(Long id) {
+        movieRepository.deleteById(id);
+    }
+
 }

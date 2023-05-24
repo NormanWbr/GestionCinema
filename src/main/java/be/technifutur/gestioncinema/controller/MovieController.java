@@ -23,6 +23,11 @@ public class MovieController {
         return movieService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public MovieDTO getById(@PathVariable Long id) {
+        return movieService.getOne(id);
+    }
+
     @PostMapping("/add")
     public void add(@RequestBody @Valid MovieForm movieForm) {
         movieService.create(movieForm);
@@ -31,6 +36,11 @@ public class MovieController {
     @PatchMapping("/update/{id}")
     public void update(@PathVariable Long id, @RequestBody @Valid MovieForm movieForm) {
         movieService.update(id, movieForm);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id) {
+        movieService.delete(id);
     }
 
 }

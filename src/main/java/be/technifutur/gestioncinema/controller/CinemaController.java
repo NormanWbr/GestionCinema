@@ -1,6 +1,7 @@
 package be.technifutur.gestioncinema.controller;
 
 import be.technifutur.gestioncinema.model.dto.CinemaDTO;
+import be.technifutur.gestioncinema.model.dto.ScreeningDTO;
 import be.technifutur.gestioncinema.model.form.CinemaForm;
 import be.technifutur.gestioncinema.service.CinemaService;
 import jakarta.validation.Valid;
@@ -22,6 +23,11 @@ public class CinemaController {
         return cinemaService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public CinemaDTO getById(@PathVariable Long id) {
+        return cinemaService.getOne(id);
+    }
+
     @PostMapping("/add")
     public void add(@RequestBody @Valid CinemaForm cinemaForm) {
         cinemaService.create(cinemaForm);
@@ -31,5 +37,16 @@ public class CinemaController {
     public void update(@PathVariable Long id, @RequestBody @Valid CinemaForm cinemaForm) {
         cinemaService.update(id, cinemaForm);
     }
+
+    @GetMapping("/{id}/movie")
+    public List<ScreeningDTO> getAllByMovie(@PathVariable Long id) {
+        return cinemaService.getAllCinemaScreening(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id) {
+        cinemaService.delete(id);
+    }
+
 
 }

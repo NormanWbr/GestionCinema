@@ -14,4 +14,7 @@ public interface MovieService {
     void create(MovieForm movieForm);
 
     void update(Long id, MovieForm movieForm);
+
+    void delete(Long id);
+
 }

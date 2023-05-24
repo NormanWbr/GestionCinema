@@ -14,7 +14,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_id")
-    private Long room_id;
+    private Long id;
 
     @Column(nullable = false)
     private Long number;
@@ -25,10 +25,6 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "cinema_id")
     private Cinema cinema;
-
-    @OneToOne
-    @JoinColumn(name = "screening_id")
-    private Screening screening;
 
     @OneToMany(mappedBy = "room")
     private Set<Screening> screenings = new LinkedHashSet<>();
